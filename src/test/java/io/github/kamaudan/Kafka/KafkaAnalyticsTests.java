@@ -1,4 +1,4 @@
-package io.github.kamaudan.KafkaAnalytics;
+package io.github.kamaudan.Kafka;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
