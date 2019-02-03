@@ -20,6 +20,7 @@ import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.Executors;
@@ -29,6 +30,7 @@ import java.util.concurrent.TimeUnit;
 @EnableBinding(AnalyticsBinding.class)
 public class KafkaAnalytics {
 
+    @Component
     public  static class PageViewSource implements ApplicationRunner {
 
         private  final MessageChannel pageViewsOut;
@@ -89,6 +91,9 @@ public class KafkaAnalytics {
                     .count( Materialized.as(AnalyticsBinding.PAGE_COUNT_MV))
                     .toStream();
 
+
+
+
         }
 
     }
@@ -113,7 +118,7 @@ public class KafkaAnalytics {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
 		SpringApplication.run(KafkaAnalytics.class, args);
 	}
 }
@@ -137,7 +142,6 @@ interface  AnalyticsBinding {
 
 
     //page count
-
 
     @Input(PAGE_COUNT_IN)
     KTable<String, Long> pageCountIn();
